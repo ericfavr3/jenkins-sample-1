@@ -15,14 +15,15 @@ node () {
 			} else { 
  				bat "mvn clean package " 
 			} 
- 		}		// Maven build step
-	withMaven(maven: 'maven') { 
+ 		}		
+	stage ('App-IC - Quality') {
+		withMaven(maven: 'maven') { 
  			if(isUnix()) {
  				sh "mvn sonar:sonar " 
 			} else { 
  				bat "mvn sonar:sonar " 
 			} 
- 		} 
+ 		} } 
 	}
 	stage ('App-IC - Post build actions') {
 /*
